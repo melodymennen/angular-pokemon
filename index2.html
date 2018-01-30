@@ -1,14 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="./css/main.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pokemon</title>
 </head>
 <body>
-    
+    <h1>Pokemon List</h1>
+    <div ng-app="pokemonApp">
+       <div ng-controller="cardCtrl">
+           <div class="addNew">
+               <div class="inputs">
+                    Name: <input ng-model="newCard.name"> 
+                    Picture URL: <input ng-model="newCard.url"> 
+                    HP: <input ng-model="newCard.stats.hp"> 
+                    ATK: <input ng-model="newCard.stats.atk"> 
+                    DEF: <input ng-model="newCard.stats.def"> 
+                    <div><button ng-click="add()">add pokemon</button></div>
+                </div>
+                <div class="preview">
+                    <div class="card">
+                        <div class="name">{{newCard.name}}</div>
+                        <div class="picture" ng-style='{backgroundImage:"url(" + newCard.url + ")"}'></div>
+                        <div class="stats">
+                            <div ng-repeat="(key, value) in newCard.stats">{{key | uppercase}}:{{value}}</div>
+                        </div>
+                    </div>
+                </div>
+           </div>
+           <h2>Filter pokemon by name<input ng-model="myFilter.name"> </h2>
+           <h2>Filter pokemon by type<input ng-model="myFilter.type"> </h2>
+            <div class="cardList">
+                <div class="card" ng-repeat="card in cards | filter: myFilter">
+                    <div class="name">{{card.name}}</div>
+                    <div class="picture" ng-style='{backgroundImage:"url(" + card.url + ")"}'></div>
+                    <div class="stats">
+                        <div ng-repeat="(key, value) in card.stats">{{key | uppercase}}:{{value}}</div>
+                    </div>
+                    <button ng-click="removeCard($index)">remove card</button>
+                </div>
+            </div>
+       </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js"></script>
+    <script src="./app/app2.js"></script>
+    <script src="./app/controllers/cardCtrl.js"></script>
 </body>
 </html>

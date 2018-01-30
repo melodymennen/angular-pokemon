@@ -54,7 +54,7 @@ button {
   position: relative;
   transition: 1s;
   top:0px;
-  height:316.25px;
+  /* height:316.25px; */
   box-shadow: inset 0px 0px 3px rgba(0,0,0,0.9);
 }
 
@@ -92,7 +92,7 @@ select{
 
 .stats{
   margin-top:10px;
-  height:100px;
+  /* height:100px; */
   background: rgba(255,255,255,.7);
   padding:5px;
   border-radius: 2px;

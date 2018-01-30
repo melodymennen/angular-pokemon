@@ -11,14 +11,15 @@
     <h1>Pokemon List</h1>
     <div ng-app="pokemonApp">
        <div ng-controller="cardCtrl">
-           <div class="addNew">
+           <div class="addNew" ng-show="addingNewPokemon">
                <div class="inputs">
                     Name: <input ng-model="newCard.name"> 
-                    Picture URL: <input ng-model="newCard.url"> 
+                    Picture: <select ng-model="newCard.url" ng-options="image.url as image.name for image in images"></select> 
                     HP: <input ng-model="newCard.stats.hp"> 
                     ATK: <input ng-model="newCard.stats.atk"> 
                     DEF: <input ng-model="newCard.stats.def"> 
                     <div><button ng-click="add()">add pokemon</button></div>
+                    <button ng-click="addingNewPokemon = false">Close Form</button>
                 </div>
                 <div class="preview">
                     <div class="card">
@@ -30,6 +31,7 @@
                     </div>
                 </div>
            </div>
+           <button ng-click="addingNewPokemon = true" ng-hide="addingNewPokemon">Add New Cards</button>
            <h2>Filter pokemon by name<input ng-model="myFilter.name"> </h2>
            <h2>Filter pokemon by type<input ng-model="myFilter.type"> </h2>
             <div class="cardList">
